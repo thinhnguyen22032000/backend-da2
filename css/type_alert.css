@@ -1,0 +1,76 @@
+.red{
+	font-size: 18px;
+	font-weight: bold;
+	color: red;
+}
+.red2{
+	font-size: 18px;
+	
+	color: red;
+}
+.blue{
+	font-size: 18px;
+	font-weight: bold;
+	color: blue;
+}
+.green{
+	font-size: 18px;
+	font-weight: bold;
+	color: green;
+}
+
+.box_left{
+	width: 55%;
+    border: 1px solid gray;
+    float: left;
+}
+
+.box_right{
+	width: 44%;
+    border: 1px solid gray;
+    float: right;
+}
+
+.submit-order{
+	padding: 10px 25px;
+    background-color: #ffc91b;
+}
+.grey{
+	color: grey;
+	font-size: 18px;
+}
+
+.shopping h3{
+	font-size: 25px;
+	font-weight: bold;
+	text-decoration: underline;
+}
+.grid_1_of_4{
+	min-height: 400px;
+}
+.fix-ui{
+	position: absolute;
+    bottom: 30px;
+    left: 20%;
+    right: 20%;
+}
+.phantrang a {
+	padding-right: 5px;
+}
+table.form {
+	width:100%;
+}
+table.form td {
+	padding:4px 0px;
+}
+table.form label {
+	font-weight:bold;
+}
+
+
+
+
+
+}
+
+
