@@ -11,7 +11,7 @@
  ?>
 
  <?php 
-   
+   // đăng kí tk
    if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])){
     
      $register_customer = $customer->insert_customer($_POST);
@@ -29,20 +29,21 @@
  <div class="main">
     <div class="content">
     	 <div class="login_panel">
-        	<h3>Existing Customers</h3>
-        	<p>Sign in with the form below.</p>
-        	<?php 
+        	<h3>Đăng nhập</h3>
+        	<p style="color: #42a5f5">Điền thông tin để xác thực</p>
+        	  <?php 
                   if(isset($check_login)){
                   	echo $check_login;
                   }
                   
-        	?>
+        	?> 
         	<form action="" method="post" id="member">
                 	<input name="email" type="text"  class="field" placeholder="Nhập email...">
                     <input name="password" type="password"  class="field" placeholder="Nhập mật khẩu..." >
-                    <div class="buttons"><div><input type="submit" name="submit_cart" class="grey"></div></div>
+                    <div class="buttons"><div><input type="submit" name="submit_cart" class="grey" style="background-color: #0097a7;
+    color: white;" value="Đăng nhập"></div></div>
                  </form>
-                 <p class="note">If you forgot your passoword just enter your email and click <a href="#">here</a></p>
+                 <!-- <p class="note">If you forgot your passoword just enter your email and click <a href="#">here</a></p> -->
                     
                     </div>
     	<div class="register_account">
@@ -92,14 +93,23 @@
 		          </div>
 				  
 				  <div>
-					<input type="text" name="password" placeholder="Nhập mật khẩu...">
+					<input type="password" name="password" style="width: 352px;
+															      height: 27px;
+																  margin-top: 6px;
+																  outline: none;" 
+                     placeholder="Nhập mật khẩu...">
 				</div>
 		    	</td>
 		    </tr> 
 		    </tbody></table> 
-		   <div class="search"><div><input type="submit" name="submit" class="grey"></div></div>
-		    <p class="terms">By clicking 'Create Account' you agree to the <a href="#">Terms &amp; Conditions</a>.</p>
+		   <div class="search"><div><input type="submit" name="submit" class="grey" style="background-color: #0097a7;
+    color: white;" value="Đăng kí"></div></div>
+		   <!--  <p class="terms">By clicking 'Create Account' you agree to the <a href="#">Terms &amp; Conditions</a>.</p> -->
+		   
+
 		    <div class="clear"></div>
+		    <p style="margin-top: 10px">Lưu ý: Để giao dịch trở nên tiện lợi, nhanh chóng, quí khách hàng vui lòng đăng kí thông tin chính xác!!</p>
+		    
 		    </form>
     	</div>  	
        <div class="clear"></div>

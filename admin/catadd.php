@@ -15,7 +15,7 @@
 
         <div class="grid_10">
             <div class="box round first grid">
-                <h2>Thêm danh mục</h2>
+                <h2 class="tl_ct">Thêm danh mục</h2>
                 <?php 
                 if(isset($catadd)){
                    echo $catadd;
@@ -31,7 +31,7 @@
                         </tr>
 						<tr> 
                             <td>
-                                <input type="submit" name="submit" Value="Them" />
+                                <input type="submit" name="submit" Value="Thêm" />
                             </td>
                         </tr>
                     </table>

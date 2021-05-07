@@ -23,7 +23,8 @@ if(!isset($_GET['brandid']) || $_GET['brandid'] == NULL) {
 
         <div class="grid_10">
             <div class="box round first grid">
-                <h2>Cap nhat danh muc</h2>
+                <h2>Cập nhật danh mục</h2>
+                <div style="height: 10px"></div>
                 <?php 
                 if(isset($brandedit)){
                    echo $brandedit;

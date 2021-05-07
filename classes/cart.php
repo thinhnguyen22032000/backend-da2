@@ -40,12 +40,12 @@
          header("location:cart.php");
         }
         else{
-          $alert = "<span class='error'>Them that bai</span>";
+          $alert = "<span class='err'>Them that bai</span>";
           return $alert;
         }       
       }
       else{
-         $alert = "<span class='error' style='color: red; font-size:18px'>Sản phẩm đã tồn tại trong giỏ hàng</span>";
+         $alert = "<span class='err'>Sản phẩm đã tồn tại trong giỏ hàng</span>";
          return $alert;
     }   
     }
@@ -123,6 +123,10 @@
       $sid = session_id();
       $qr = "SELECT * FROM tbl_cart WHERE sid = '$sid'";
       $get_cart = $this->db->select($qr);
+      if(empty($get_cart)){
+         $alert = "<span class='err'>Vui lòng kiểm tra lại giỏ hàng!!</span>";
+             return $alert;
+      }
       if($get_cart){
         while($result = $get_cart->fetch_assoc()){
           $productid = $result["productid"];
@@ -141,8 +145,8 @@
             header("location:cusses.php");
           }
           else{
-              $alert = "<span class='error' style='color: red; font-size:18px'>Mua hang that bai</span>";
-          return $alert;
+              $alert = "<span class='err'>Vui lòng kiểm tra lại giỏ hàng!!</span>";
+             return $alert;
         }       
 
         }
@@ -258,11 +262,11 @@
       $qr = "DELETE FROM tbl_wishlist WHERE productid = '$id'";
       $result = $this->db->delete($qr);
       if($result){
-         $alert = "<span class='success'>Xóa thành công</span>";
+         $alert = "<span class='succes'>Xóa thành công</span>";
         return $alert;
       }
       else{
-        $alert = "<span class='error'>Xóa thất bại</span>";
+        $alert = "<span class='err'>Xóa thất bại</span>";
         return $alert;
       }   
 
@@ -286,7 +290,7 @@
          $qr = "SELECT * FROM tbl_wishlist WHERE productid = '$id' AND customer_id = '$customer_id'";
          $result= $this->db->select($qr);
          if($result){
-           $alert = "<span class='red'>Đã tồn tại trong yêu thích</span>";
+           $alert = "<span class='err'>Đã tồn tại trong yêu thích</span>";
           return $alert;
          }
          else{
@@ -294,11 +298,11 @@
               $add_to_wishlist = $this->db->insert($qr);
 
             if($add_to_wishlist){
-              $alert = "<span class='green'>Thêm thành công</span>";
+              $alert = "<span class='succes'>Thêm thành công</span>";
               return $alert;
              }
             else{
-            $alert = "<span class='red'>Thêm thất bại</span>";
+            $alert = "<span class='err'>Thêm thất bại</span>";
            return $alert;
          }       
          }
@@ -323,20 +327,39 @@
 
          $add_log = $this->db->insert($qry);
       
-      //   $qr = "DELETE FROM tbl_order WHERE 
-      //     customer_id = '$id' AND
-      //     date_order = '$date' AND
-      //     productid = '$productid'";
+        $qr = "DELETE FROM tbl_order WHERE 
+          customer_id = '$id' AND
+          date_order = '$date' AND
+          productid = '$productid'";
                                
-      //     $result = $this->db->delete($qr);
-      //     if($result){
-      //         $alert = "<span class=''>Xử lý thành công</span>";
-      //         return $alert;
-      //     }
-      //    else{
-      //      $alert = "<span class='error'>Xử lý thất bại</span>";
-      //      return $alert;
-      // }   
+          $result = $this->db->delete($qr);
+          if($result){
+              $alert = "<span class=''>Xử lý thành công</span>";
+              return $alert;
+          }
+         else{
+           $alert = "<span class='error'>Xử lý thất bại</span>";
+           return $alert;
+      }   
+          
+    
+    }
+
+     public function del_order_apd($id){
+        
+      
+        $qr = "DELETE FROM tbl_order WHERE 
+          id = '$id'";
+                               
+          $result = $this->db->delete($qr);
+          if($result){
+              $alert = "<span class=''>Xử lý thành công</span>";
+              return $alert;
+          }
+         else{
+           $alert = "<span class='error'>Xử lý thất bại</span>";
+           return $alert;
+         }   
           
     
     }
@@ -359,20 +382,20 @@
 
          $add_log = $this->db->insert($qry);
       
-      //   $qr = "DELETE FROM tbl_order WHERE 
-      //     customer_id = '$id' AND
-      //     date_order = '$date' AND
-      //     productid = '$productid'";
+        $qr = "DELETE FROM tbl_order WHERE 
+          customer_id = '$id' AND
+          date_order = '$date' AND
+          productid = '$productid'";
                                
-      //     $result = $this->db->delete($qr);
-      //     if($result){
-      //         $alert = "<span class=''>Xử lý thành công</span>";
-      //         return $alert;
-      //     }
-      //    else{
-      //      $alert = "<span class='error'>Xử lý thất bại</span>";
-      //      return $alert;
-      // }   
+          $result = $this->db->delete($qr);
+          if($result){
+              $alert = "<span class=''>Xử lý thành công</span>";
+              return $alert;
+          }
+         else{
+           $alert = "<span class='error'>Xử lý thất bại</span>";
+           return $alert;
+      }   
           
     
     }
@@ -444,8 +467,14 @@
            $date_now = date('Y-m-d 23:59:59');
            $date_0 = date('Y-m-d 00:00:00');
            $qr = "SELECT * FROM tbl_log WHERE date_order >= '$date_0' AND date_order <= '$date_now'";
-           $result= $this->db->select($qr);   
-           return $result;
+           $result= $this->db->select($qr); 
+           if($result){
+             return $result;
+           }  
+           else{
+            return false;
+           }
+           
   }
 
 

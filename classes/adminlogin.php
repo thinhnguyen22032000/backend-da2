@@ -23,6 +23,7 @@
 
   	$adminUser = mysqli_real_escape_string($this->db->link,$adminUser);
     $adminPass = mysqli_real_escape_string($this->db->link,$adminPass);
+    $adminPass = md5($adminPass);
     if(empty($adminUser) || empty($adminPass)){
     	$alert = "User and Pass must be not empty";
     	return $alert;
@@ -47,6 +48,8 @@
 
     }
   }
+
+  
 
  
 }

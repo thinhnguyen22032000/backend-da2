@@ -23,7 +23,7 @@ if (!isset($_GET['catid']) || $_GET['catid'] == NULL) {
 
         <div class="grid_10">
             <div class="box round first grid">
-                <h2>Cap nhat danh muc</h2>
+                <h2 class="tl_ct">Cập nhật danh mục</h2>
                 <?php 
                 if(isset($catedit)){
                    echo $catedit;
@@ -48,7 +48,7 @@ if (!isset($_GET['catid']) || $_GET['catid'] == NULL) {
                         </tr>
 						<tr> 
                             <td>
-                                <input type="submit" name="submit" Value="Edit" />
+                                <input type="submit" name="submit" Value="Lưu" />
                             </td>
                         </tr>
                     </table>

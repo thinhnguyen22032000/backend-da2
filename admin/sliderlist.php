@@ -19,18 +19,20 @@
 ?>
 <style type="text/css">
    .red {
-    font-weight: bold;
-    color: red;
+    
+    
    }
    .green {
     font-weight: bold;
     color: green;
+
    }
  </style>
 
 <div class="grid_10">
     <div class="box round first grid">
         <h2>Slider List</h2>
+        <div style="height: 10px"></div>
         <?php 
              if(isset($del_slider)){
              	echo $del_slider;
@@ -66,11 +68,11 @@
 					<td><img width="400px" height="200px" src="uploads/<?php echo $result['image'] ?>"></td>
 					<td><?php 
 					     if($result['type'] == 1){ ?>
-					     	<a class="green" href="?etype=<?php echo $result['id'] ?>&type=0">Hiện</a>
+					     	<a class="green" href="?etype=<?php echo $result['id'] ?>&type=0"><i style='font-size:30px' class='fas'>&#xf205;</i></a>
 					     <?php 	
 					     }
 					     else{ ?>
-                            <a class="red" href="?etype=<?php echo $result['id'] ?>&type=1">Ẩn</a>
+                            <a class="" href="?etype=<?php echo $result['id'] ?>&type=1"><i style='font-size:30px' class='fas'>&#xf204;</i></a>
 
 					     	<?php
 
@@ -79,7 +81,7 @@
 					?></td>				
 				<td>
 					
-					<a onclick="return confirm('Are you sure to Delete!');" href="?delid=<?php echo $result['id'] ?>" >Delete</a> 
+					<a onclick="return confirm('Are you sure to Delete!');" href="?delid=<?php echo $result['id'] ?>" ><i style='font-size:20px' class='far del'>&#xf2ed;</i></a> 
 				</td>
 				</tr>
 

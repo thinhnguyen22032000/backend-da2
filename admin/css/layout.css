@@ -696,6 +696,7 @@ img.right
 	clear: both;
 	_height: 302px;
 	zoom: 1; /* Feeling sorry for IE */
+	margin-top: 5px !important;
 }
 
 .dataTables_processing {

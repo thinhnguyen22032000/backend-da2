@@ -34,16 +34,25 @@
 ?>
 <style type="text/css">
    .pending {
-    font-weight: bold;
+     
+    color: green;
+   }
+   .huydon {
+   
+    color: #ffee58;
+   }
+   .xoadon{
+    font-weight: normal;
     color: red;
    }
    .process {
-    font-weight: bold;
+  
     color: green;
    }
-   .blue {
-   	font-weight: bold;
+   .dangchuyen{
+   
     color: blue;
+    
    }
  </style>
         <div class="grid_10">
@@ -69,7 +78,7 @@
 							<th>Số lượng</th>
 							<th>Giá</th>
 							<th>Địa chỉ</th>
-							<th>Action</th>
+							<th>Hành động</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -87,23 +96,25 @@
 							   <td><?php echo $result['productName'] ?></td>
 							   <td><?php echo $result['quantity'] ?></td>
 							   <td><?php echo $result['price'] ?></td>
-							   <td ><a class="blue" href="customer.php?ctid=<?php echo $result['customer_id']?>">address</a></td>
+							   <td ><a style="color: grey;" href="customer.php?ctid=<?php echo $result['customer_id']?>">Thông tin</a></td>
 							   <td>
 							   <?php
                        if($result['status'] == '0'){?>
                          <a class="pending" href="?ctid=<?php echo $result['customer_id'] ?>&date=<?php echo $result['date_order'] ?>&proid=<?php echo $result['productid'] ?>"><?php echo 'Chờ' ?></a>
+                          || <a class="huydon" href="?huyorder=<?php echo $result['customer_id'] ?>&date=<?php echo $result['date_order'] ?>&proid=<?php echo $result['productid']?>"><?php echo 'Hủy đơn' ?></a>
                   <?php
                     }elseif($result['status'] == '1'){ ?>
-                    	    <a class="process"> <?php echo 'Đang chuyển...' ?></a>
+                    	    <a class="dangchuyen"> <?php echo 'Đang chuyển...' ?></a>
+                           || <a class="huydon" href="?huyorder=<?php echo $result['customer_id'] ?>&date=<?php echo $result['date_order'] ?>&proid=<?php echo $result['productid']?>"><?php echo 'Hủy đơn' ?></a>
                     	<?php
                     }elseif($result['status'] == '2'){ ?>
-                    	 <a class="pending" href="?delid=<?php echo $result['customer_id'] ?>&date=<?php echo $result['date_order'] ?>&proid=<?php echo $result['productid']?>"><?php echo 'Xóa' ?></a>
+                    	 <a class="xoadon" href="?delid=<?php echo $result['customer_id'] ?>&date=<?php echo $result['date_order'] ?>&proid=<?php echo $result['productid']?>"><?php echo 'Xóa' ?> (Hoàn thành)</a>
                     	 <?php 
                     }
 
                             
 							    ?>
-                  || <a class="pending" href="?huyorder=<?php echo $result['customer_id'] ?>&date=<?php echo $result['date_order'] ?>&proid=<?php echo $result['productid']?>"><?php echo 'Hủy đơn' ?></a>
+                 <!--  || <a class="huydon" href="?huyorder=<?php echo $result['customer_id'] ?>&date=<?php echo $result['date_order'] ?>&proid=<?php echo $result['productid']?>"><?php echo 'Hủy đơn' ?></a> -->
 							</td>
 						
 						   </tr>

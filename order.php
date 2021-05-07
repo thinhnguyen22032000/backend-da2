@@ -36,6 +36,15 @@
          echo "<script>window.location = 'order.php'</script>";
       }
      }
+
+     // xóa sp khỏi order
+     if(isset($_GET['del_apd'])){
+      $id = $_GET['del_apd'];
+      $del_order = $cart->del_order_apd($id);
+      if($del_order){
+         echo "<script>window.location = 'order.php'</script>";
+      }
+     }
     
  ?>
  <div class="main">
@@ -109,12 +118,13 @@
                
                 else if($result["status"]=='1') { ?>
 
-                    <td><a class="process" href="?cusid=<?php echo $result['customer_id'] ?>&date=<?php echo $result['date_order'] ?>&proid=<?php echo $result['productid'] ?>"><?php echo 'Nhận' ?></a></td>
+                    <td><a class="process" href="?cusid=<?php echo $result['customer_id'] ?>&date=<?php echo $result['date_order']?>&proid=<?php echo $result['productid'] ?>"><?php echo 'Nhận' ?></a></td>
 
                     <?php 
                 }else{ ?>
 
-                  <td class="process"><?php echo "Đã nhận" ?></td>
+                   <!-- <td class="process"><a href="?del_apd=<?php echo $result['id']?>"><?php echo 'Xóa' ?></a></td> -->
+                    <td class="process"><?php echo 'Hoàn thành' ?></a></td>
 
                 <?php
                 }

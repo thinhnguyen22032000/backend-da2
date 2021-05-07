@@ -21,6 +21,19 @@
 .phantrang a{
    padding-right: 5px;
 }
+.pagination {
+  display: inline-block;
+}
+
+.pagination a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+.context-menu {cursor: context-menu;}
+
 </style>
  <div class="main">
     <div class="content">
@@ -30,90 +43,150 @@
     		</div>
     		<div class="clear"></div>
     	</div>
-    	
-	      <div class="section group">
-	      	<?php 
-    	         
-                 $getproduct = $product->getProduct_feathered();
-                 if($getproduct){
-                 	while($result = $getproduct->fetch_assoc()) { ?>
-                 
-				<div class="grid_1_of_4 images_1_of_4">
-					 <a href="details.php"><img src="admin/uploads/<?php echo trim($result['image']) ?>" alt="" /></a>
-                    <div class="fix-ui">
-					 <h2><?php echo $result['productName'] ?></h2>
-					 <p><?php echo $fm->textShorten($result['productDesc'],70)?></p>
-					 <p><span class="price"><?php echo $fm->canvert_vnd($result['price']) ?></span></p>
-				     <div class="button"><span><a href="details.php?proid=<?php echo $result['productid'] ?>" class="details">Chi tiết</a></span></div>
-                    </div>
-				</div>
-			<?php 	
-                 	}
-                 }   
-    	    ?>
-			</div>
-             <div class="phantrang">
-                <p>Trang</p>
-                 <?php 
-                  $get_productf = $product->get_productf();
-                  $num_row = mysqli_num_rows($get_productf);
-                  $page_product = ceil($num_row/4); 
-                   for ($i=1; $i <= $page_product; $i++){ 
-                  echo "<a href='?trangf=".$i."'>".$i."<a/>";
-                  }
-                 
-                  
-            ?>
-            </div>
+    
+	     <div class="section group" id="sanphamf"></div>
+        
+     <!--  phan trang sản pham noi bat -->
+      <div class="pagination">
+      <a class="context-menu" id="befor_page_f">&laquo;</a>
+      <a  id="page_f"></a>
+      <a class="context-menu"  id="next_page_f">&raquo;</a>
+      </div>
+
+    
 				
 			<div class="content_bottom">
-    		<div class="heading">
-    		<h3>Sản phẩm mới</h3>
-    		</div>
-    		<div class="clear"></div>
+        		<div class="heading">
+        		<h3>Sản phẩm mới</h3>
+        		</div>
+        		<div class="clear"></div>
     	</div>
-			<div class="section group">
-
-	      	<?php 
-                 $getproduct = $product->getProduct_new();
-                 if($getproduct){
-                    $i=0;
-                 	while($result = $getproduct->fetch_assoc()) { 
-                        $i++;
-                        ?>
-
-				<div class="grid_1_of_4 images_1_of_4" style="<?php if($i == 1){echo "margin-left: 0";}  ?>">
-					 <a href="details.php"><img src="admin/uploads/<?php echo trim($result['image']) ?>" alt="" /></a>
-                 <div class="fix-ui">
-					 <h2><?php echo $result['productName'] ?></h2>
-					 <p><span class="price"><?php echo $result['price'] ?></span></p>
-				     <div class="button"><span><a href="details.php?proid=<?php echo $result['productid'] ?>" class="details">Chi tiết</a></span></div>
-                 </div>
-				</div>
-
-				<?php 	
-                 	}
-                 }
-                 
-    	 ?>
-			</div>
-
-           <div class="phantrang">
-                <p>Trang</p>
-                 <?php 
-                  $get_all_product = $product->get_all_product();
-                  $num_row = mysqli_num_rows($get_all_product);
-                  $page_product = ceil($num_row/4); 
-                  for ($i=1; $i <= $page_product ; $i++){ 
-                      echo "<a href='?trang=".$i."'>".$i."<a/>";
-                  }
-            ?>
-            </div>
+      <!--  phan trang san pham new -->
+     
+			<div class="section group" id="sanphammoi"></div>
+      <div class="pagination">
+      <a class="context-menu" id="befor_page" name="">&laquo;</a>
+      <a  id="page"></a>
+      <a class="context-menu"  id="next_page">&raquo;</a>
+      
+      </div>
+			          
            
     </div>
+
  </div>
+ <script type="text/javascript">
+
+  // goi data bằng ajax
+  $(document).ready(function(){
+       //load san pham moi
+       load_spn();
+       //load san pham f
+       load_spf();
+
+     
+    
+  });
+      function load_spf(){
+         $.get("./classes/ajax/productf.php",{"sanphamf":"f"}, function(data){
+             
+             $("#sanphamf").html(data);
+             $("#page_f").html(count);
+
+         });
+      }
+
+       function load_spn(){
+         $.get("./classes/ajax/productn.php",{"sanphammoi":"n"}, function(data){
+             $("#sanphammoi").html(data);           
+             $("#page").html(count);
+              console.log(count);
+
+
+         });
+       }
+       // function load page
+       // function load_page(count){
+       //     if(count == 1){
+            
+       //      $("#befor_page").attr('readonly', true);
+       //      $("#befor_page").css({"background-color":"grey"});
+       //     }
+       // }
+      // next trang product new
+        var count = 1;
+       
+        //next san pham vè sau
+        $("#next_page").click(function(){
+          count++;
+           $.get("./classes/ajax/productn.php", {"trangn":count}, function(data){
+            if(data!=0){
+             $("#sanphammoi").html(data);
+             $("#page").html(count);
+              console.log(count);
+             // load_page(count);
+                }
+                else{
+                  count--;
+                }
+         });
+        });
+        //next sp về trước
+         $("#befor_page").click(function(){
+          if(count > 1){
+          count--;
+           $.get("./classes/ajax/productn.php", {"trangn":count}, function(data){
+             $("#sanphammoi").html(data);
+             $("#page").html(count);
+             console.log(count);
+            // load_page(count);
+            
+            
+         });
+         }else{
+           
+            $("#befor_page").attr('readonly', true);
+            $("#befor_page").css({"background-color":"#e9e1e1"});
+         }
+        });
+
+     // next trang san pham noi bat
+     var count_f = 1; 
+     $("#next_page_f").click(function(){
+          count_f++; 
+              
+           $.get("./classes/ajax/productf.php", {"trangf":count_f}, function(data){
+            if(data!=0){
+             $("#sanphamf").html(data);
+             $("#page_f").html(count_f);
+          
+             }else{
+              count_f--;
+             }
+         });
+         
+        });
+         $("#befor_page_f").click(function(){
+          if(count_f > 1){
+           count_f--;
+            $.get("./classes/ajax/productf.php", {"trangf":count_f}, function(data){
+             $("#sanphamf").html(data);
+             $("#page_f").html(count_f);
+            
+         });
+          }else{
+              $("#befor_page_f").attr('readonly', true);
+            $("#befor_page_f").css({"background-color":"#e9e1e1"});
+          }
+        });                 
+
+ </script>
+
  <?php 
    include "inc/footer.php";
  ?>
+
+
+     
 
 

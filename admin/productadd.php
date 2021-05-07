@@ -18,12 +18,15 @@
 <div class="grid_10">
     <div class="box round first grid">
         <h2>Thêm sản phẩm</h2>
-        <div class="block"> 
-        <?php 
+        <div style="height: 10px"></div>
+          <?php 
                 if(isset($product_add)){
                     echo $product_add;
                 }
-        ?>              
+        ?> 
+        <div class="block">
+       
+        <div style="height: 10px"></div>             
          <form action="productadd.php" method="post" enctype="multipart/form-data">
             <table class="form">
                
@@ -41,7 +44,7 @@
                     </td>
                     <td>
                         <select id="select" name="category">
-                            <option>Select Category</option>
+                            <option>-----Danh mục-----</option>
                             <?php 
                                 $cat = new category();
                                 $catlist = $cat->show_category();
@@ -64,7 +67,7 @@
                     </td>
                     <td>
                         <select id="select" name="brand">
-                            <option>Select Brand</option>
+                            <option>-----Thương hiệu-----</option>
                             <?php 
                                 $brand = new brand();
                                 $brandlist = $brand->show_brand();
@@ -115,7 +118,7 @@
                     </td>
                     <td>
                         <select id="select" name="type">
-                            <option>Select Type</option>
+                            <option>-----Mức độ-----</option>
                             <option value="1">Featured</option>
                             <option value="0">Non-Featured</option>
                         </select>

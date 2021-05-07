@@ -57,12 +57,7 @@
              <td><input type="text" name="city" value="<?php echo $result["city"] ?>"></td>
            
           </tr>
-          <tr>
-            <td>Quốc gia</td>
-             <td>:</td>
-              <td><input type="text" name="country" value="<?php echo $result["country"] ?>"></td>
-     
-          </tr>
+        
            <tr>
             <td>Zipcode</td>
              <td>:</td>

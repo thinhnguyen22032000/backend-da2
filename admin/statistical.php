@@ -66,6 +66,7 @@
         <div class="grid_10">
             <div class="box round first grid">
                 <h2>Thống kê</h2>
+                <div style="height: 10px"></div>
                  <form action="" method="post">
                     <table class="form">
                           <p >Từ: <input class="date1"  type="date" name="first_date" value="<?php echo $_POST['first_date'] ?>" ></p>
@@ -155,7 +156,7 @@
                                  }else{
                                        
                                  $thongke = $cart->show_thongke_now();
-                                 if($thongke){
+                                 if($thongke != false){
                                   $all_quantity = 0;
                                   $all_price = 0;
                                   $all_quantity_huy = 0;
@@ -169,9 +170,7 @@
                                     }    
                                      
                                     }
-                              
-                                    }
-                                    echo '
+                                        echo '
                                     <table class="form" style="width: 25%">
                                           <tr>
                                              <th>Nội dung</th>
@@ -179,7 +178,9 @@
                                           </tr>
                                           <tr>
                                              <td>Sản phẩm bán được</td>
-                                             <td>'.$all_quantity.'</td>
+                                             <td>
+                                                 '.$all_quantity.'
+                                             </td>
                                           </tr>
                                           <tr>
                                              <td>Sản phẩm hũy đơn</td>
@@ -222,7 +223,36 @@
 
                                     ';
 
+                                    }else{
+                                    echo '
+                                    <table class="form" style="width: 25%">
+                                          <tr>
+                                             <th>Nội dung</th>
+                                             <th>Giá trị</th>
+                                          </tr>
+                                          <tr>
+                                             <td>Sản phẩm bán được</td>
+                                             <td>
+                                                 0
+                                             </td>
+                                          </tr>
+                                          <tr>
+                                             <td>Sản phẩm hũy đơn</td>
+                                             <td>0</td>
+                                          </tr>
+                                          <tr>
+                                              <td>Giá trị thu được</td>
+                                              <td>0 vnđ</td>
+                                          </tr>
+                                    </table>
+                                    <p class="bold title">Thống kê: '.date('d-m-Y', strtotime(date('d-m-Y'))).'</p>
 
+                                   
+
+
+                                    ';
+
+                                  }
                                  }
                                 
                             

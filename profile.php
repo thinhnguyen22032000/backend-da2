@@ -43,7 +43,18 @@
            <tr>
             <td>Quốc gia</td>
              <td>:</td>
-            <td><?php echo $result["country"] ?></td>
+            <td><?php 
+        
+                if($result["country"]==0){
+                    echo "Việt Name";
+                }elseif ($result["country"]==1) {
+                    echo "America";
+                }elseif($result["country"]==2){
+                  echo "India";
+                }else{
+                  echo "China";
+                }
+            ?></td>
           </tr>
            <tr>
             <td>Zipcode</td>

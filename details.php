@@ -14,6 +14,78 @@ table.form td {
 table.form label {
 	font-weight:bold;
 }
+.comment{
+	width: 800px;
+  border: 1px solid #eeeeee;
+    padding: 20px;
+
+}
+.comment-input{
+      outline: none;
+    border-radius: 5px;
+    border: 2px solid gray;
+    width: 750px;
+}
+.button{
+    padding: 5px 18px;
+    color: white;
+    background-color: #6b05be;
+
+}
+
+
+/*//-----------------*/
+.container {
+  border: 2px solid #dedede;
+  background-color: #f1f1f1;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px 0;
+ 
+}
+
+.darker {
+  border-color: #ccc;
+  background-color: #ddd;
+}
+
+.container::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.container img {
+  float: left;
+  max-width: 60px;
+  width: 100%;
+  margin-right: 20px;
+  border-radius: 50%;
+
+}
+
+.container img.right {
+ 
+}
+
+.time-right {
+  float: right;
+  color: #aaa;
+}
+
+.time-left {
+  float: left;
+  color: #999;
+}
+.h2cm{
+  font-size: 20px;
+  padding: 10px 15px;
+  color: white;
+  background-color: #6aba6a;
+}
+.name_cm{
+  color: grey;
+}
 </style>
  <div class="main">
     <div class="content">
@@ -87,17 +159,22 @@ table.form label {
 						<input type="submit" class="buysubmit" name="submit_wish" value="Thêm"/>
 					</form>				
 				</div>
+        <div style="height: 10px"></div>
+
+       <!--  thêm san phẩm vào list live -->
 				<?php if(isset($add_to_wishlist)){
 				         echo $add_to_wishlist;
 			              } 
                 
 			            ?>
-			</div>
-			<?php if(isset($addtocart)){
-				         echo $addtocart;
-			              } 
+             <!--  thêm vào card -->
+      <?php if(isset($addtocart)){
+                 echo $addtocart;
+                    } 
                 
-			            ?>
+                  ?>
+			</div>
+    
 			<div class="product-desc">
 			<h2>Chi tiết sản phẩm</h2>
 	        <p><?php echo $result['productDesc']?></p>
@@ -130,17 +207,76 @@ table.form label {
  				</div>
  		</div>
  	</div>
+
+ 	       <?php 
+ 	         $check_ct = Session::get('customer_login');
+ 	         if($check_ct){
+            	        
+                 if(isset($_POST["submit_cm"])){
+                 	$id_product = $_GET["proid"];
+                 	  $comment = $_POST["comment"];
+                    $name =  Session::get("customer_name");
+                    $customer_id = Session::get("customer_id");
+
+                    $insert_comment = $product->insert_comment($customer_id, $id_product, $comment, $name);
+                 } ?>
+ 	       
 		 	 <div class="comment">
-		    	<form action="" method="post">
-		    		<table class="form">
-						  <label >Bình luận</label>
-						  <textarea name="comment"></textarea>
-						  <input type="submit" name="submit" value="Gửi">
-					</table>
+		    	<form action="" method="post">	    		
+						  <p>Bình luận</p>
+						  <textarea class="comment-input" name="comment"></textarea>
+					     <input class="button" type="submit" name="submit_cm" value="Gửi">
 		    	</form>
 		    </div>
+		 <?php
+		    
+		}
+           
+           ?>
 	</div>
-   <!--  comment -->
+	
+   <!--  Hiển thị đánh giá -->
+  <div class="comment">
+   <h2 class="h2cm">Đánh giá khách hàng</h2>
+   <div class="container-cm">
+   
+   	 <?php 
+   	    $id_product = $_GET["proid"];
+        $show_comment = $product->show_comment_page($id_product);
+        if($show_comment){
+        	while($result = $show_comment->fetch_assoc()){ ?>
+   	      
+             <div class="container">
+              <img style="border-radius: 50%; border: 1px solid black;width: 50px;height: 50px" src="images/anime.jfif">
+              <p class="name_cm"><?php echo $result['name'] ?></p>
+              <p><?php echo $result['comment']?></p>
+              <span class="time-right"><?php echo date("d/m/Y H:m:s", strtotime($result['date_comment']))?></span>
+            </div>
+   	       <?php
+        	}
+        }
+   ?>
+   
+</div>
+ <div class="phantrang">
+                
+                 <?php 
+                  $get_num_cm = $product->show_comment($id_product);
+                  if($get_num_cm){
+                    echo "<p>Trang </p>";
+                     $num_row = mysqli_num_rows($get_num_cm);
+                     $page_product = ceil($num_row/5); 
+                     for ($i=1; $i <= $page_product ; $i++){ 
+                      echo "<a href='?proid=".$id_product."&trang=".$i."'>".$i."<a/>";
+                  }
+                  }
+                  else{
+
+                  }
+                 
+            ?>
+          </div>
+</div>
 
 
 	<?php 

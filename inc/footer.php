@@ -1,9 +1,39 @@
+<style type="text/css">
+.footer{
+	    text-align: center;
+
+}
+.footer div{
+	
+}
+.footer div h4 {
+	color: white;
+}
+.footer div h4  li {
+	color: white;
+}
+</style>
 </div>
    <div class="footer">
-   	  <div class="wrapper">	
+   	   <div class="wrapper">	
 	     <div class="section group">
-				<div class="col_1_of_4 span_1_of_4">
-						<h4>Information</h4>
+	      <div class="col_1_of_4 span_1_of_4" style="margin-left: 35%">
+						<h4>CTY TNHH 3 thành viên HONDASHOP</h4>
+						<ul>
+						<li><a href="#">Địa chỉ: 112/Nguyễn Văn Cừ</a></li>
+						<li><a href="#">Hotline: 0999887766</a></li>
+						<li><a href="#"><span>Email: nhtinh2k@gmail.opm</span></a></li>
+						<li><a href="#"></a></li>
+						<li><a href="#"><span></span></a></li>
+						</ul>
+					</div>
+
+     </div>
+    </div> 
+</div>
+<!-- <div class="footer">
+	<div>
+	<h4>Information</h4>
 						<ul>
 						<li><a href="#">About Us</a></li>
 						<li><a href="#">Customer Service</a></li>
@@ -12,49 +42,7 @@
 						<li><a href="#"><span>Contact Us</span></a></li>
 						</ul>
 					</div>
-				<div class="col_1_of_4 span_1_of_4">
-					<h4>Why buy from us</h4>
-						<ul>
-						<li><a href="about.html">About Us</a></li>
-						<li><a href="faq.html">Customer Service</a></li>
-						<li><a href="#">Privacy Policy</a></li>
-						<li><a href="contact.html"><span>Site Map</span></a></li>
-						<li><a href="preview.html"><span>Search Terms</span></a></li>
-						</ul>
-				</div>
-				<div class="col_1_of_4 span_1_of_4">
-					<h4>My account</h4>
-						<ul>
-							<li><a href="contact.html">Sign In</a></li>
-							<li><a href="index.html">View Cart</a></li>
-							<li><a href="#">My Wishlist</a></li>
-							<li><a href="#">Track My Order</a></li>
-							<li><a href="faq.html">Help</a></li>
-						</ul>
-				</div>
-				<div style="margin-left: 0px" class="col_1_of_4 span_1_of_4">
-					<h4>Contact</h4>
-						<ul>
-							<li><span>+88-01713458599</span></li>
-							<li><span>+88-01813458552</span></li>
-						</ul>
-						<div class="social-icons">
-							<h4>Follow Us</h4>
-					   		  <ul>
-							      <li class="facebook"><a href="#" target="_blank"> </a></li>
-							      <li class="twitter"><a href="#" target="_blank"> </a></li>
-							      <li class="googleplus"><a href="#" target="_blank"> </a></li>
-							      <li class="contact"><a href="#" target="_blank"> </a></li>
-							      <div class="clear"></div>
-						     </ul>
-   	 					</div>
-				</div>
-			</div>
-			<div class="copy_right">
-				<p>Training with live project &amp; All rights Reseverd </p>
-		   </div>
-     </div>
-    </div>
+</div> -->
     <script type="text/javascript">
 		$(document).ready(function() {
 			/*
@@ -88,3 +76,7 @@
 	  </script>
 </body>
 </html>
+<?php 
+
+     ob_end_flush();
+?>

@@ -4,8 +4,9 @@
   include "inc/header.php";
   include "inc/slider.php";  
  ?>
+ 
  <div class="main">
-    <div class="content">
+   <div class="content">
     	<div class="support">
   			<div class="support_desc">
   				<h3>Live Support</h3>
@@ -58,6 +59,16 @@
     </div>
  </div>
 </div>
+
+
+
+
+
+<script type="text/javascript">
+	/*Hàm Mở Form*/
+ 
+
+</script>
 <?php 
    include "inc/footer.php";
  ?>

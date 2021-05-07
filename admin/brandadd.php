@@ -16,6 +16,7 @@
         <div class="grid_10">
             <div class="box round first grid">
                 <h2>Thêm thương hiệu</h2>
+                <div style="height: 10px"></div>
               <?php 
                 if(isset($brandadd)){
                    echo $brandadd;
@@ -31,7 +32,7 @@
                         </tr>
 						<tr> 
                             <td>
-                                <input type="submit" name="submit" Value="Them" />
+                                <input type="submit" name="submit" Value="Thêm" />
                             </td>
                         </tr>
                     </table>

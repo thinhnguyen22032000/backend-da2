@@ -25,6 +25,7 @@
 <div class="grid_10">
     <div class="box round first grid">
         <h2>Cập nhật sản phẩm</h2>
+        <div style="height: 10px"></div>
         <?php 
                if(isset($productedit)){
                 echo $productedit;

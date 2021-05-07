@@ -37,7 +37,7 @@
     $uploaded_image = "uploads/".$unique_image;
 
     if($productName == '' || $category == '' || $brand == '' || $productDesc == '' || $type == '' || $price == '' || $file_name=='' ){
-    	$alert = "<span class='red'>Vui lòng điền đủ thông tin</span>";
+    	$alert = "<span class='err'>Vui lòng điền đủ thông tin</span>";
     	return $alert;
     }
     else{
@@ -45,7 +45,7 @@
     	$qr = "INSERT INTO tbl_product(productName,catid,brandid,productDesc,type,price,image) VALUES ('$productName',' $category',' $brand',' $productDesc','$type',' $price',' $unique_image ')";
     	$result = $this->db->insert($qr);
       if($result){
-              $alert = "<span class='green'>Thêm thành công</span>";
+              $alert = "<span class='succes'>Thêm thành công</span>";
          return $alert;
       }
       else{
@@ -94,11 +94,11 @@
     else{
           if(!empty($file_name)){
             if($file_size > 20480){
-              $alert = "<span class='red'>Kích thước ảnh phải nhỏ hơn 24080!!!</span>";
+              $alert = "<span class='err'>Kích thước ảnh phải nhỏ hơn 24080!!!</span>";
               return $alert;
             }
             elseif(in_array($file_ext, $permited) == false){
-                $alert = "<span class='red'>Chỉ nhận ảnh có phần mở rộng: ".implode(',' , $permited)."</span>";
+                $alert = "<span class='err'>Chỉ nhận ảnh có phần mở rộng: ".implode(',' , $permited)."</span>";
             }
             
             
@@ -113,11 +113,11 @@
              WHERE productid = '$id'";
             $result = $this->db->insert($qr);
             if($result){
-            $alert = "<span class='green'>Cập nhật thành công</span>";
+            $alert = "<span class='succes'>Cập nhật thành công</span>";
             return $alert;
             }
             else{
-            $alert = "<span class='red'>Cập nhật thất bại</span>";
+            $alert = "<span class='err'>Cập nhật thất bại</span>";
             return $alert;  
 
            }
@@ -135,11 +135,11 @@
         } 
          $result = $this->db->insert($qr);
             if($result){
-            $alert = "<span class='green'>Cập nhật thành công</span>";
+            $alert = "<span class='succes'>Cập nhật thành công</span>";
             return $alert;
             }
             else{
-            $alert = "<span class='red'>Cập nhật thất bại</span>";
+            $alert = "<span class='err'>Cập nhật thất bại</span>";
             return $alert;  
     
     }
@@ -158,7 +158,7 @@
    $qr = "DELETE FROM tbl_product WHERE productid = '$id'";
    $result = $this->db->delete($qr);
       if($result){
-         $alert = "<span class='thanhcong' style='color:green'>Xóa thành công</span>";
+         $alert = "<span class='succes' style='color:green'>Xóa thành công</span>";
          return $alert;
       }
       else{
@@ -170,15 +170,15 @@
 
 
     public function getProduct_feathered(){
-       $num = 4;
-       if(isset($_GET['trangf'])){
-        $trangf = $_GET['trangf'];
-       }
-       else{
-        $trangf = 1;
-       }
-       $vitrif = ($trangf - 1) * $num;
-       $qr = "SELECT * FROM tbl_product WHERE type = '1' LIMIT $vitrif, $num";
+       // $num = 4;
+       // if(isset($_GET['trangf'])){
+       //  $trangf = $_GET['trangf'];
+       // }
+       // else{
+       //  $trangf = 1;
+       // }
+       // $vitrif = ($trangf - 1) * $num;
+       $qr = "SELECT * FROM tbl_product WHERE type = '1' LIMIT 4 ";
        $result = $this->db->select($qr);
        return $result;
     }
@@ -189,19 +189,19 @@
        return $result;
     }
 
-    public function getProduct_new(){
-       $num = 4;
-       if(isset($_GET['trang'])){
-        $trang = $_GET['trang'];
-       }
-       else{
-        $trang = 1;
-       }
-       $vitri = ($trang - 1)*$num;
-       $qr = "SELECT * FROM tbl_product  LIMIT 4";
-       $result = $this->db->select($qr);
-       return $result;
-    }
+    // public function getProduct_new(){
+    //    // $num = 4;
+    //    // if(isset($_GET['trang'])){
+    //    //  $trang = $_GET['trang'];
+    //    // }
+    //    // else{
+    //    //  $trang = 1;
+    //    // }
+    //    // $vitri = ($trang - 1)*$num;
+    //    $qr = "SELECT * FROM tbl_product  ORDER BY productid DESC LIMIT $vitri, $num";
+    //    $result = $this->db->select($qr);
+    //    return $result;
+    // }
     
 
      public function get_all_product(){
@@ -209,6 +209,8 @@
        $result = $this->db->select($qr);
        return $result;
     }
+
+
 
     public function show_product_detail($id){
      $qr = "SELECT tbl_product.*, tbl_category.catName,tbl_brand.brandName FROM tbl_product inner join 
@@ -227,6 +229,25 @@
   // show san pham theo category
 
    public function show_product_by_cat($id){
+        $sp1trang = 4;
+        if(isset($_GET['trang'])){
+          $trang = $_GET['trang'];
+        }else{
+          $trang = 1;
+        }
+        $vitri = ($trang - 1)*$sp1trang;
+   $qr = "SELECT tbl_product.*, tbl_category.catName,tbl_brand.brandName FROM tbl_product inner join 
+
+   tbl_category on tbl_product.catid = tbl_category.catid inner join tbl_brand on tbl_product.brandid = tbl_brand.brandid
+   
+   WHERE tbl_product.catid = '$id' ORDER BY catid desc LIMIT $vitri, $sp1trang";
+
+
+   $result = $this->db->select($qr);
+   return $result;
+  }
+
+   public function row_product_by_cat($id){
    $qr = "SELECT tbl_product.*, tbl_category.catName,tbl_brand.brandName FROM tbl_product inner join 
 
    tbl_category on tbl_product.catid = tbl_category.catid inner join tbl_brand on tbl_product.brandid = tbl_brand.brandid
@@ -237,19 +258,67 @@
    $result = $this->db->select($qr);
    return $result;
   }
+
+
   
 
    public function show_product_by_key($key){
-   $qr = "SELECT tbl_product.*, tbl_category.catName,tbl_brand.brandName FROM tbl_product inner join 
+    if($key == ""){
+        header("location: index.php");
+        return $alert;
+   }else{
 
-   tbl_category on tbl_product.catid = tbl_category.catid inner join tbl_brand on tbl_product.brandid = tbl_brand.brandid
-   
-   WHERE tbl_product.productName like '%$key%'";
+    $num = 4;
+    if(isset($_GET['trang'])){
+        $trang = $_GET['trang'];
+    }
+    else{
+        $trang = 1;
+    }
+       $vitri = ($trang - 1)*$num;
+       $qr = "SELECT
+            tbl_product.*,
+            tbl_category.catName,
+            tbl_brand.brandName FROM tbl_product
+        INNER JOIN tbl_category ON tbl_product.catid = tbl_category.catid
+        INNER JOIN tbl_brand ON tbl_product.brandid = tbl_brand.brandid
+        WHERE
+            tbl_product.productName LIKE '%$key%' LIMIT $vitri, $num ";
 
 
    $result = $this->db->select($qr);
-   return $result;
-  }
+   if($result){
+     return $result;
+   }else{
+    return 0;
+   }
+   }
+
+   
+ 
+}
+
+  public function row_product_by_key($key){
+
+     $qr = "SELECT
+          tbl_product.*,
+          tbl_category.catName,
+          tbl_brand.brandName FROM tbl_product
+      INNER JOIN tbl_category ON tbl_product.catid = tbl_category.catid
+      INNER JOIN tbl_brand ON tbl_product.brandid = tbl_brand.brandid
+      WHERE
+          tbl_product.productName LIKE '%$key%'";
+
+
+   $result = $this->db->select($qr);
+   if($result){
+     return $result;
+   }else{
+    return 0;
+   }
+   }
+
+  
 
 
   // insert slider 
@@ -273,7 +342,7 @@
     $uploaded_image = "uploads/".$unique_image;
 
     if($sliderName == '' || $type == ''){
-      $alert = "<span class='error'>Vui lòng điền đủ thông tin</span>";
+      $alert = "<span class='err'>Vui lòng điền đủ thông tin</span>";
       return $alert;
     }
     else{
@@ -281,11 +350,11 @@
       $qr = "INSERT INTO tbl_silder(sliderName, image, type) VALUES ('$sliderName', '$unique_image', '$type')";
       $result = $this->db->insert($qr);
       if($result){
-              $alert = "<span style='font-size:18px; color:green' class='thanhcong' style='color:green'>Thêm thành công</span>";
+              $alert = "<span class='succes'>Thêm thành công</span>";
          return $alert;
       }
       else{
-        $alert = "<span class='error'>Thêm thất bại</span>";
+        $alert = "<span class='err'>Thêm thất bại</span>";
         return $alert;
       }   
       
@@ -321,22 +390,120 @@
      $qr = "DELETE FROM tbl_silder WHERE id = '$id'";
      $result = $this->db->delete($qr);
       if($result){
-         $alert = "<span class='green' style='color:green'>Xóa thành công</span>";
+         $alert = "<span class='succes' style='color:green'>Xóa thành công</span>";
          return $alert;
       }
       else{
-        $alert = "<span class='red'>=Xóa thất bại</span>";
+        $alert = "<span class='err'>=Xóa thất bại</span>";
         return $alert;
       }   
       
     }
+
+    public function insert_comment($customer_id, $id_product, $comment, $name){
+    
+    if($comment == ''){
+      $alert = "<span class='error'>Vui lòng viết đánh giá!!</span>";
+      return $alert;
+    }
+    else{
+      $qr = "INSERT INTO tbl_comment(customer_id, productid, comment, name) VALUES ('$customer_id', '$id_product', '$comment', '$name')";
+      $result = $this->db->insert($qr);
+      if($result){
+           $alert = "<span style='font-size:18px; color:green' class='thanhcong' style='color:green'>Thêm thành công</span>";
+         return $alert;
+      }
+      else{
+        $alert = "<span class='error'>Them that bai</span>";
+        return $alert;
+      }   
+      
+    }
+  }
   
+   public function show_comment($id){
+     $qr = "SELECT * FROM tbl_comment WHERE productid = '$id' ORDER BY id DESC";
+     $result = $this->db->select($qr);
+     return $result;
+  }
+
+   public function show_comment_page($id){
+       $num = 5;
+       if(isset($_GET['trang'])){
+        $trang = $_GET['trang'];
+       }
+       else{
+        $trang = 1;
+       }
+       $vitri = ($trang - 1) * $num;
+       $qr = "SELECT * FROM tbl_comment WHERE productid = '$id'  ORDER BY id DESC LIMIT $vitri, $num";
+       $result = $this->db->select($qr);
+       if(!$result){
+        return false;
+       }else{
+
+       return $result;
+       }
+
+      
+    }
 
 
+    public function get_product_of_cat_new(){
+       $num = 4;
+       if(isset($_GET['trang'])){
+        $trang = $_GET['trang'];
+       }
+       else{
+        $trang = 1;
+       }
+       $vitri = ($trang - 1)*$num;
+       $qr = "SELECT * FROM tbl_product  LIMIT 4";
+       $result = $this->db->select($qr);
+       return $result;
+    }
 
-
+  
 
 
 }
 
 ?>
+
+<!-- phan trang ajax -->
+ <!-- <?php
+      $db = new Database();
+      $fm = new Format();
+      $so_sp_1_trang = 4;
+      // $trangn = $_GET["trangn"];
+      $trangn=1;
+      settype($trangn, "int");
+
+      $from = ($trangn - 1)* $so_sp_1_trang;
+
+      $qr = "SELECT * FROM tbl_product  ORDER BY productid DESC LIMIT $from, $so_sp_1_trang";
+       $result = $db->select($qr);
+       if($result){
+        $i = 0;
+        while($result_page = $result->fetch_assoc()){
+          $i++;
+         echo '
+
+           <div class="">
+            <a href="details.php"><img src="admin/uploads/'.trim($result_page['image']).'" alt="" /></a>
+           <div class="fix-ui">
+           <h2>'.$result_page['productName'].'</h2>
+           <p><span class="price">'.$fm->canvert_vnd($result_page['price']).'</span></p>
+            <div class="button"><span><a href="details.php?proid='.$result_page['productid'].'" class="details">Chi tiết</a></span></div>
+          </div>
+          </div>             
+
+         ';
+       }
+     }
+       
+
+?> -->
+          
+
+          

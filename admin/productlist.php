@@ -20,6 +20,7 @@
 <div class="grid_10">
     <div class="box round first grid">
         <h2>Danh sách sản phẩm</h2>
+        <div style="height: 10px"></div>
         <?php 
               if(isset($product_delete)){
               	echo $product_delete;
@@ -53,7 +54,7 @@
 					<td><?php echo $i; ?></td>
 					<td><?php echo $result['productName'] ?></td>
 					<td><?php echo $result['price'] ?></td>
-					<td><img width="80px" height="100px"  src="uploads/<?php echo trim($result['image']);?>"></td>
+					<td><img width="100px" height="100px"  src="uploads/<?php echo trim($result['image']);?>"></td>
 					<td><?php echo $result['catName'] ?></td>
 					<td><?php echo $result['brandName'] ?></td>
 					<td><?php
@@ -64,7 +65,7 @@
 
 					    echo $result['type']==0?'Không nỗi bậc':'Nỗi bậc' ?></td>
 
-					<td><a href="productedit.php?productid=<?php echo $result['productid'] ?>">Edit</a> || <a onclick = "return confirm('Bạn có muốn xóa?')"href=?delid=<?php echo $result['productid']?>>Delete</a></td>
+					<td><a class="green" href="productedit.php?productid=<?php echo $result['productid'] ?>"><i style='font-size:20px' class='far edit'>&#xf044;</i></a> || <a class="red" onclick = "return confirm('Bạn có muốn xóa?')" href=?delid=<?php echo $result['productid']?>><i style='font-size:20px' class='far del'>&#xf2ed;</i></a></td>
 					
 					
 					  	

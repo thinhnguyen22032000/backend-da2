@@ -15,15 +15,16 @@
 ?>
         <div class="grid_10">
             <div class="box round first grid">
-                <h2>Category List</h2>
-                <div class="block"> 
-                <?php if(isset($catdelete)){echo $catdelete;}?>       
+                <h2>Danh sách danh mục</h2>
+                <div class="block tl_ct"> 
+                <?php if(isset($catdelete)){echo $catdelete;}?> 
+                <div style="height: 10px"></div>      
                     <table class="data display datatable" id="example">
 					<thead>
 						<tr>
-							<th>Serial No.</th>
-							<th>Category Name</th>
-							<th>Action</th>
+							<th>STT</th>
+							<th>Tên danh mục</th>
+							<th>Hành động</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -38,7 +39,7 @@
 							
 							<td><?php echo $i; ?></td>
 							<td><?php echo $result['catName']?></td>
-							<td><a href="catedit.php?catid=<?php echo $result['catid']?>">Edit</a> || <a onclick = "return confirm('Bạn có muốn xóa?')" href="?delid=<?php echo $result['catid']?>">Delete</a></td>
+							<td><a class="edit" href="catedit.php?catid=<?php echo $result['catid']?>"><i style='font-size:20px' class='far edit'>&#xf044;</i></a> || <a class="del" onclick = "return confirm('Bạn có muốn xóa?')" href="?delid=<?php echo $result['catid']?>"><i style='font-size:20px' class='far del'>&#xf2ed;</i></a></td>
 						</tr>
 						
                          

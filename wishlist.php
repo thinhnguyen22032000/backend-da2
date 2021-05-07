@@ -49,8 +49,55 @@
           <div class="cartpage">
          
             <h2>Yêu thích</h2>
+
+              <?php 
+                   if(isset($del_product)){
+                    echo $del_product;
+                   }
+             ?>
+             <div style="height: 10px"></div>
+            <table class="tblone">
+              <tr>
+                <th width="15%">STT</th>
+                <th width="15%">Tên sản phẩm</th>
+                <th width="15%">Hình ảnh</th>
+                <th width="15%">Giá</th>
+                <th width="10%">Hành động</th>
+                
+                
+              </tr>
+              <?php                          
+              
+                                    
+               // code show gio hang
+                 $get_wishlist = $cart->show_wishlist($id);
+
+                    if($get_wishlist != false){
+                            $i = 0;   
+                       while($result = $get_wishlist->fetch_assoc()){
+                            $i++;
+                        ?>
+                             
+                           
+              <tr>
+                <td><?php echo $i ?></td>
+                <td><?php echo $result["productName"]; ?></td>
+                <td><img src="admin/uploads/<?php echo trim($result['image']) ?>" alt=""/></td>
+                <td><?php echo $result["price"]; ?></td>
+                <td><a href="details.php?proid=<?php echo $result['productid']?>">Chi tiết</a> || <a onclick = "return confirm('Bạn có muốn xóa?')" href="?delid=<?php echo $result['productid']?>">Xóa</a></td>
+                
+              </tr>            
+            <?php
+              
+                 
+               }
+            }
+            ?>  
+                                                              
+              
+            </table>
              </div> 
-             <?php 
+            <!--  <?php 
                    if(isset($del_product)){
                     echo $del_product;
                    }
@@ -94,7 +141,7 @@
             ?>  
                                                               
               
-            </table>
+            </table> -->
           
          
          

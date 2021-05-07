@@ -1,6 +1,6 @@
 .red{
-	font-size: 18px;
-	font-weight: bold;
+	
+	
 	color: red;
 }
 .red2{
@@ -9,15 +9,15 @@
 	color: red;
 }
 .blue{
-	font-size: 18px;
-	font-weight: bold;
+	
+	
 	color: blue;
 }
 .green{
-	font-size: 18px;
-	font-weight: bold;
+
 	color: green;
 }
+
 
 .box_left{
 	width: 55%;
@@ -67,10 +67,38 @@ table.form label {
 	font-weight:bold;
 }
 
+ .err{
+       	padding: 5px;
+	    background-color: #ffd0d0;
+	    color: red;
 
+	    
+	    display: block;
+     }
 
+.succes{
+	padding: 5px;
+    background-color: #95d4a4;
+    color: #28a745;
+   
+    display: block;
 
-
+   
 }
+
+.tl_ct{
+	margin-bottom: 10px !important;
+}
+
+.edit{
+	color: green;
+}
+.del{
+	color: red;
+}
+
+
+
+
 
 

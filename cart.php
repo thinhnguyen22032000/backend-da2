@@ -73,7 +73,7 @@
 						}
 						}
 						else{
-                            echo  "<span class='green'>Giỏ hàng của bạn hiện đang trống!!</span>"; 
+                            echo  "<span class='succes' style='margin-bottom:5px'>Giỏ hàng của bạn hiện đang trống!!</span>"; 
 						}
 						?>	
                                 															

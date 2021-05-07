@@ -1,4 +1,5 @@
 <?php 
+ ob_start();
   include_once 'lib/session.php';
   Session::init();
 ?>
@@ -37,13 +38,14 @@
 
 <!DOCTYPE HTML>
 <head>
-<title>Store Website</title>
+<title>Cửa hàng xe honda</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all"/>
 <link href="css/menu.css" rel="stylesheet" type="text/css" media="all"/>
 <link href="css/type_alert.css" rel="stylesheet" type="text/css" media="all"/>
 <script src="js/jquerymain.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="js/script.js" type="text/javascript"></script>
 <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script> 
 <script type="text/javascript" src="js/nav.js"></script>
@@ -63,13 +65,13 @@
   <div class="wrap">
 		<div class="header_top">
 			<div class="logo">
-				<a href="index.php"><img src="images/logo.png" alt="" /></a>
+				<a href="index.php"><img src="images/hondashop2.png" alt="" style="height: 70px;" /></a>  <!-- <img src="images/hondashop.png" alt="" /> -->
 			</div>
 			  <div class="header_top_right">
 			    <div class="search_box">
-				    <form action="search.php" method="post" >
-				    	<input type="text" name="key" placeholder="Nhập từ khóa...">
-              <input type="submit" name="submit_search" value="Tìm">
+				    <form action="search.php" action="" method="get" >
+				    	<input type="text" name="sp"   placeholder="Nhập từ khóa...">
+              <input style="width: 80px" type="submit">
 				    </form>
 			    </div>
 			    <div class="shopping_cart">
@@ -118,8 +120,8 @@
 <div class="menu">
 	<ul id="dc_mega-menu-orange" class="dc_mm-orange">
 	  <li><a href="index.php">Trang chủ</a></li>
-	  <li><a href="products.php">Sản phẩm</a> </li>
-	  <li><a href="topbrands.php">Thương hiệu</a></li>
+	 <!--  <li><a href="products.php">Sản phẩm</a> </li>
+	  <li><a href="topbrands.php">Thương hiệu</a></li> -->
      <?php 
                   $check_login = Session::get("customer_login");
                   // $check_wishlist = $cart->check_wishlist($id_ct);
@@ -131,7 +133,7 @@
                     }
      ?>
 	 
-	  <li><a href="contact.php">Liên hệ</a> </li>
+	  <!-- <li><a href="contact.php">Liên hệ</a> </li> -->
        <?php 
                   $check_login = Session::get("customer_login");
                   // $check_wishlist = $cart->check_wishlist($id_ct);

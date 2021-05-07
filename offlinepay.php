@@ -46,7 +46,13 @@
             <h3>Thanh toán không trực tuyến</h3>
         </div>
 
+
     </div> 
+    <?php 
+             if(isset($insert_order)){
+             	echo $insert_order;
+             }
+        ?>
         <div class="box_left">
         	<table class="tblone">
 							<tr>

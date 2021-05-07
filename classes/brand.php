@@ -20,14 +20,14 @@
   	
     $brandName = mysqli_real_escape_string($this->db->link,$brandName);
     if(empty($brandName)){
-    	$alert = "<span class='error'>Vui long dien ten thuong hieu</span>";
+    	$alert = "<span class='err'>Vui lòng điền đủ thông tin</span>";
     	return $alert;
     }
     else{
     	$qr = "INSERT INTO tbl_brand(brandName) VALUES ('$brandName')";
     	$result = $this->db->insert($qr);
       if($result){
-           $alert = "<span style='font-size:18px; color:green' class='thanhcong' style='color:green'>Thêm thành công</span>";
+           $alert = "<span class='succes'>Thêm thành công</span>";
          return $alert;
       }
       else{
@@ -50,14 +50,14 @@
     $brandName = mysqli_real_escape_string($this->db->link,$brandName);
     $brandid = mysqli_real_escape_string($this->db->link,$brandid);
     if(empty($brandName)){
-      $alert = "<span class='error'>Vui long dien ten danh muc</span>";
+      $alert = "<span class='err'>Vui lòng điền đủ thông tin</span>";
       return $alert;
     }
     else{
       $qr = "UPDATE tbl_brand SET brandName = '$brandName' WHERE brandid = '$brandid'";
       $result = $this->db->update($qr);
       if($result){
-         $alert = "<span id='thanhcong' style='color:green'>Cap nhat thanh cong</span>";
+         $alert = "<span class='succes'>Cập nhật thành công</span>";
          return $alert;
       }
       else{
@@ -80,7 +80,7 @@
    $qr = "DELETE FROM tbl_brand WHERE brandid = '$id'";
    $result = $this->db->delete($qr);
       if($result){
-         $alert = "<span class='thanhcong' style='color:green'>Xoa thanh cong</span>";
+         $alert = "<span class='succes'>Xóa thành công</span>";
          return $alert;
       }
       else{

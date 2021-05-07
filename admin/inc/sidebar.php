@@ -26,23 +26,27 @@
                         <li><a href="sliderlist.php">Danh sách Slider</a> </li>
                     </ul>
                 </li>
-              <!--  <li><a class="menuitem">Site Option</a>
-                    <ul class="submenu">
-                        <li><a href="titleslogan.php">Title & Slogan</a></li>
-                        <li><a href="social.php">Social Media</a></li>
-                        <li><a href="copyright.php">Copyright</a></li>
+  
+            <?php 
+                     if(Session::get('level') == 0){ ?>
                         
-                    </ul>
-                </li>
-				
-                 <li><a class="menuitem">Update Pages</a>
-                    <ul class="submenu">
-                        <li><a>About Us</a></li>
-                        <li><a>Contact Us</a></li>
+                        <li><a class="menuitem">Nhân sự</a>
+                         <ul class="submenu">
+                             <li><a href="createadmin.php">Thêm nhân sự</a> </li>
+                            <li><a href="personnellist.php">Danh sách nhân sự</a> </li>
+                        </ul>
+                     </li>
+           <?php
+                     }
+                 
+            ?>
+
+                <!-- <li><a class="menuitem">Nhân sự</a>
+                     <ul class="submenu">
+                        <li><a href="createadmin.php">Thêm nhân sự</a> </li>
+                        <li><a href="personnellist.php">Danh sách nhân sự</a> </li>
                     </ul>
                 </li> -->
-				
-                
                 
             </ul>
         </div>

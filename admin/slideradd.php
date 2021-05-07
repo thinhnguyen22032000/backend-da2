@@ -16,6 +16,7 @@
 <div class="grid_10">
     <div class="box round first grid">
         <h2>Thêm Slider mới</h2>
+        <div style="height: 10px"></div>
         <?php 
              if(isset($slider_add)){
                 echo $slider_add;

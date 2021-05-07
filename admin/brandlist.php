@@ -16,8 +16,10 @@
         <div class="grid_10">
             <div class="box round first grid">
                 <h2>Danh sách thương hiệu</h2>
+                <div style="height: 10px"></div>
+                 <?php if(isset($brand_delete)){echo $brand_delete;}?>   
                 <div class="block"> 
-                <?php if(isset($brand_delete)){echo $brand_delete;}?>       
+                       
                     <table class="data display datatable" id="example">
 					<thead>
 						<tr>
@@ -38,7 +40,7 @@
 							
 							<td><?php echo $i; ?></td>
 							<td><?php echo $result['brandName']?></td>
-							<td><a href="brandedit.php?brandid=<?php echo $result['brandid'] ?>">Edit</a> || <a onclick = "return confirm('Bạn có muốn xóa?')" href="?delid=<?php echo $result['brandid']?>">Delete</a></td>
+							<td><a href="brandedit.php?brandid=<?php echo $result['brandid'] ?>"><i style='font-size:20px' class='far edit'>&#xf044;</i></a> || <a onclick = "return confirm('Bạn có muốn xóa?')" href="?delid=<?php echo $result['brandid']?>"><i style='font-size:20px' class='far del'>&#xf2ed;</i></a></td>
 						</tr>
 						
                          

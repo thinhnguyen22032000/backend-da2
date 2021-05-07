@@ -1,7 +1,6 @@
 <?php 
   include '../lib/session.php';
   Session::checkSession();
-
   
 ?>
 <?php
@@ -37,6 +36,8 @@
     <!-- END: load jquery -->
     <script type="text/javascript" src="js/table/table.js"></script>
     <script src="js/setup.js" type="text/javascript"></script>
+    <!-- icons w3 -->
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 
     <!-- thong ke -->
  <!--    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -75,7 +76,7 @@
           }
 
    </script> -->
-
+   
 	 <script type="text/javascript">
         $(document).ready(function () {
             setupLeftMenu();
@@ -97,17 +98,19 @@
 				</div>
                 <div class="floatright">
                     <div class="floatleft">
-                        <img width="40px" style="border-radius: 30px" src="img/profile-hacker.png" alt="Profile Pic" /></div>
+                        <img width="30px" style="border-radius: 30px;height: 30px;" src="img/profile-hacker.png" alt="Profile Pic" /></div>
                     <div class="floatleft marginleft10">
                         <ul class="inline-ul floatleft">
                             <li><?php 
                               echo $_SESSION['adminName'];
                             
                             ?></li>
-                             <?php  
-                                 if(isset($_GET['action']) && $_GET['action']=='logout')
+                            <?php  
+                                 if(isset($_GET['action']) && $_GET['action']=='logout'){
+                                    
                                   Session::destroy();
-                                ?>
+                                }
+                            ?>
                             <li><a href="?action=logout">Đăng xuất</a>
 
                              </li>
@@ -126,6 +129,7 @@
                <!--  <li class="ic-form-style"><a href=""><span>User Profile</span></a></li> -->
         				<li class="ic-typography"><a href="changepassword.php"><span>Đổi mật khẩu</span></a></li>
         				<li class="ic-grid-tables"><a href="inbox.php"><span>Inbox</span></a></li>
+                
                <!--  <li class="ic-charts"><a href=""><span>Visit Website</span></a></li> -->
                <?php 
 
@@ -147,6 +151,17 @@
                        }   
                
                 ?>
+
+                <!--  <?php 
+
+                       if(Session::get('level') == 0){
+                        echo "<li><a href='createadmin.php'>Add admin</a></li>";
+                       }
+                       else{
+
+                       }   
+               
+                ?> -->
 
 
                
